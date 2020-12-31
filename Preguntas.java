@@ -1,31 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Lab3_20379801_Cruz;
 
-/**
- *
- * @author benja
- */
-public class Preguntas {
-    
-    public String titulo;
-    public boolean estado;
-    public int recompensa;
-    public String pregunta;
-    public int idPregunta;
-    public String autor;
 
-    public Preguntas(String titulo, boolean estado, int recompensa, String pregunta, int idPregunta, String autor) {
-        this.titulo = titulo;
-        this.estado = estado;
-        this.recompensa = recompensa;
-        this.pregunta = pregunta;
-        this.idPregunta = idPregunta;
-        this.autor = autor;
-    }
+public class Preguntas {
+    private String titulo;
+    private int recompensa;
+    private String pregunta;
+    private int idPregunta;
+    private String autor;
+    Date fecha;
+   private int votoAfavor;
+   private String estado;
+   private int votoAcontra;
+   
     
     public Preguntas(){
         
@@ -33,15 +20,8 @@ public class Preguntas {
 
     @Override
     public String toString() {
-        return "Preguntas{" + "titulo=" + titulo + ", estado=" + estado + ", recompensa=" + recompensa + ", pregunta=" + pregunta + ", idPregunta=" + idPregunta + ", autor=" + autor + '}';
-    }
-    
-    
-    //Id, respuestas,titulo,contendoo,fecha ,autor,estado,recompensa
-    
-    public String datosP(){
-        return "Pregunta:"+pregunta+" Id Pregunta: "+idPregunta+" Autor:"+autor+"\n";
-        
+         return "Pregunta:"+pregunta+" Id Pregunta: "+idPregunta+" Autor:"+autor+" fecha"+fecha+" Votos a favor:"+votoAfavor+
+                 " Votos en Contra:"+votoAcontra+" Recompenda"+recompensa+" Estado:"+estado+"\n";
     }
 
     public String getTitulo() {
@@ -50,14 +30,6 @@ public class Preguntas {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
     }
 
     public int getRecompensa() {
@@ -91,5 +63,43 @@ public class Preguntas {
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getVotoAfavor() {
+        return votoAfavor;
+    }
+
+    public void setVotoAfavor(int votoAfavor) {
+        this.votoAfavor = votoAfavor;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getVotoAcontra() {
+        return votoAcontra;
+    }
+
+    public void setVotoAcontra(int votoAcontra) {
+        this.votoAcontra = votoAcontra;
+    }
+    
+
+  
+    
+    
 }
+
 
