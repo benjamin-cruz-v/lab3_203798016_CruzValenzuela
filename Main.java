@@ -6,15 +6,11 @@ public class Main {
     
     public static void main(String[] args) {
        
-     ListaUsuario listaUsuario= new ListaUsuario();
+    ListaUsuario listaUsuario= new ListaUsuario();
     ListaPregunta listaPregunta= new ListaPregunta();
     ListaRespuesta listaRespuesta= new ListaRespuesta();
     
-    
     Stack stack=new Stack(listaUsuario,listaPregunta,listaRespuesta);
-    
-   
-    
     System.out.println("### STACKORVERFLOW  ### ");   
     boolean salir =false;
     Scanner Entrada=new Scanner(System.in); 
@@ -23,12 +19,9 @@ public class Main {
     while(!salir){
     boolean n=true;
     boolean n2=true;
-    
+        stack.mostrarPregunta();
         while(n==true){
-            System.out.println("1.Registrarse");
-            System.out.println("2.Login");
-            System.out.println("3.Salir del Programa "); 
-            System.out.println("Ingrese una opcion: ");
+            menuInicio();
             int num2 =Entrada2.nextInt();
             switch(num2){
                 case 1:
@@ -80,14 +73,7 @@ public class Main {
             System.out.println("### SISTEMA DE PREGUNTAS Y RESPUESTAS ### ");
             String nombre=stack.getListaUsuario().buscarUsuario();
             stack.getListaUsuario().mostrarUsuario(nombre);
-            System.out.println("1.Agregar nueva pregunta");
-            System.out.println("2.Responder pregunta ");
-            System.out.println("3.Dar recompensa");
-            System.out.println("4.Aceptar respuesta");
-            System.out.println("5.Cerrar sesion");
-            System.out.println("6.Salir del programa");
-            System.out.println("Introdusca la opcion: ");
-            System.out.println("Ingrese una opcion: ");
+            menuStack();
             int num =Entrada.nextInt();
             switch(num){
                 case 1:
@@ -100,29 +86,66 @@ public class Main {
                     String contenido=entradaContenido.nextLine();
                  
                     stack.ask(titulo,contenido);
-                    stack.mostrarP();
+                    stack.getListaPregunta().getListaPregunta().get(0).setAutor(nombre);
+                    stack.mostrarPregunta();
                     break;
                     
                 case 2:
+                    System.out.println("Listado de Preguntas\n");
+                    stack.mostrarPregunta();
+                    System.out.println("Ingrese Id de la Pregunta");
+                    Scanner idPregunta=new Scanner(System.in);
+                    int id =idPregunta.nextInt();
                     System.out.println("Ingrese la Respuesta");
                     Scanner textoRespuesta=new Scanner(System.in);
                     String respuesta=textoRespuesta.nextLine();
-                    stack.answer(respuesta,0,1,"ww");
-                    stack.mostrarR(1);
+                    stack.answer(respuesta,id);
+                    stack.getListaRespuesta().getListaRespuesta().get(0).setAutor(nombre);
                     break;
-                case 3:
-                    System.out.println("opcion 3");
-                    stack.getListaUsuario().mostrarUsuario();
-                case 4:
-                    System.out.println("opcion 4");    
                     
+                case 3:
+                    System.out.println("Listado de Preguntas\n");
+                    stack.mostrarPregunta();
+                    System.out.println("Ingrese Id de la Pregunta");
+                    Scanner idPreguntar=new Scanner(System.in);
+                    int idr =idPreguntar.nextInt();
+                    System.out.println("Ingrese Recompensa");
+                    Scanner recom=new Scanner(System.in);
+                    int recompensa =recom.nextInt();
+                    stack.reward(idr,recompensa);
+                    break;
+                    
+                case 4:
+                    System.out.println("Listado de Preguntas\n");
+                    stack.mostrarPregunta(nombre);
+                    System.out.println("Ingrese Id de la Pregunta");
+                    Scanner idPreguntaA=new Scanner(System.in);
+                    int IdpA =idPreguntaA.nextInt();
+                    System.out.println("Ingrese Id de la Respuesta");
+                    Scanner idRespuestaA=new Scanner(System.in);
+                    int IdrA =idRespuestaA.nextInt();
+                    stack.accept(IdpA, IdrA);
+                    break;
+                
                 case 5:
-                    System.out.println("opcion 5");
+                    System.out.println("Listado de Preguntas\n");
+                    stack.mostrarPregunta();
+                    System.out.println("Ingrese Id de la Pregunta");
+                    Scanner idPreguntav=new Scanner(System.in);
+                    int Id =idPreguntav.nextInt();
+                    System.out.println("Ingrese true o false");
+                    Scanner voto=new Scanner(System.in);
+                    String vote=voto.nextLine();
+                    stack.vote(Id,vote);
+                    break;
+                    
+                case 6:
+                    System.out.println("opcion 6");
                     stack.logout(nombre);
                     n2=false;
                     break;
                 
-                case 6:
+                case 7:
                     System.out.println("El Programa ha Finalizado");
                     salir=true;
                     n2=false;
@@ -132,13 +155,33 @@ public class Main {
                     break;
             }
                 
-        
+      
         }
-        } 
+        
+        
+    } 
+ 
+    }
     
-    
-    
-    
+    public static void menuInicio(){
+        System.out.println("1.Registrarse");
+        System.out.println("2.Login");
+        System.out.println("3.Salir del Programa "); 
+        System.out.println("Ingrese una opcion: ");
+    }
+   
+    public static void menuStack(){
+       System.out.println("1.Agregar nueva pregunta");
+       System.out.println("2.Responder pregunta ");
+       System.out.println("3.Dar recompensa");
+       System.out.println("4.Aceptar respuesta");
+       System.out.println("5.Votar");
+       System.out.println("6.Cerrar sesion");
+       System.out.println("7.Salir del programa");
+       System.out.println("Introdusca la opcion: ");
+       System.out.println("Ingrese una opcion: ");
     }
 }
+        
+      
         
