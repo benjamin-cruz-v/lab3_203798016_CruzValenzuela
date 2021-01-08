@@ -1,17 +1,25 @@
 
-package Opcion2;
+package Lab3_20379801_Cruz;
 
 import java.util.ArrayList;
 
+
 public class ListaUsuario {
-   
-  ArrayList<Usuario> listaUsuario=new ArrayList ();   
+    
+  
+  ArrayList<Usuario> listaUsuario=new ArrayList ();
+
+    public ListaUsuario() {
+    }
+  
+  
+  
     
   public void addUsuario(String nombre,int pass){
        Usuario usuario =new Usuario();
        usuario.setNombre(nombre);
        usuario.setPass(pass);
-       usuario.setReputacion(0);
+       usuario.setReputacion(10);
        usuario.setSesion(true);
        listaUsuario.add(0,usuario);
   }
@@ -56,10 +64,6 @@ public class ListaUsuario {
           System.out.println(string); 
           
     }
-
-   
-    
-    
     
     public ArrayList<Usuario> getListaUsuario() {
         return listaUsuario;

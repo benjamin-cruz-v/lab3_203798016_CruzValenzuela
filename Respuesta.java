@@ -1,11 +1,11 @@
 
-package Opcion2;
+package Lab3_20379801_Cruz;
 
 import java.util.Date;
 
 
 public class Respuesta {
-   private String respuesta;
+  private String respuesta;
    private int idRespuesta;
    private String autor;
    private int idPregunta;
@@ -20,9 +20,10 @@ public class Respuesta {
         
     }
     
+   @Override
      public String toString(){
-        return "Respuesta:"+respuesta+ " Id Respuesta: "+idRespuesta+" Autor:"+autor+" fecha"+fecha+" Votos a favor:"+votoAfavor+
-                 " Votos en Contra:"+votoAcontra+"\n";
+        return "    Respuesta:"+respuesta+ " Id Respuesta: "+idRespuesta+" Autor:"+autor+" Votos a favor:"+votoAfavor+
+                 " Votos en Contra:"+votoAcontra+ " fecha"+fecha+"\n";
         
     }
 

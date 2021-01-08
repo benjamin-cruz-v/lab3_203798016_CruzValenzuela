@@ -1,9 +1,12 @@
 
-package Opcion2;
+package Lab3_20379801_Cruz;
+
+import java.util.ArrayList;
+
 
 public class ListaEtiquetas {
     
-   ArrayList<Etiqueta> listaEtiqueta=new ArrayList ();
+ArrayList<Etiqueta> listaEtiqueta=new ArrayList ();
   
        
    
@@ -12,9 +15,7 @@ public class ListaEtiquetas {
       Etiqueta etiqueta= new Etiqueta();
       etiqueta.setNombre(nombre);
       etiqueta.setDescripcion(descripcion);
-      int Id=listaEtiqueta.size()+1;
-      etiqueta.setId(Id);
-      listaEtiqueta.add(0,etiqueta);
+      listaEtiqueta.add(etiqueta);
    }
    public void addE (Etiqueta etiqueta){
       listaEtiqueta.add(etiqueta);
@@ -42,3 +43,4 @@ public class ListaEtiquetas {
     }
    
 }
+

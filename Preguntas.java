@@ -1,35 +1,32 @@
 
 package Lab3_20379801_Cruz;
 
+import java.util.Date;
 
 public class Preguntas {
-    private String titulo;
+    
+   private String titulo;
     private int recompensa;
     private String pregunta;
     private int idPregunta;
     private String autor;
     Date fecha;
-   private int votoAfavor;
-   private String estado;
-   private int votoAcontra;
+    private int votoAfavor;
+    private String estado;
+     private int votoAcontra;
+     
+     private ListaEtiquetas listaEtiquetas;
    
     
+   
     public Preguntas(){
         
     }
 
     @Override
     public String toString() {
-         return "Pregunta:"+pregunta+" Id Pregunta: "+idPregunta+" Autor:"+autor+" fecha"+fecha+" Votos a favor:"+votoAfavor+
-                 " Votos en Contra:"+votoAcontra+" Recompenda"+recompensa+" Estado:"+estado+"\n";
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+         return "Titulo:"+titulo+"\nPregunta:"+pregunta+" Id Pregunta: "+idPregunta+" Autor:"+autor+" Votos a favor:"+votoAfavor+
+                 " Votos en Contra:"+votoAcontra+" Recompensa:"+recompensa+" Estado:"+estado+" fecha:"+fecha+"\n"+"Etiquetas:"+listaEtiquetas.mostrarEtiqueta()+"\n";
     }
 
     public int getRecompensa() {
@@ -39,6 +36,20 @@ public class Preguntas {
     public void setRecompensa(int recompensa) {
         this.recompensa = recompensa;
     }
+
+   
+    
+    
+    
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    
 
     public String getPregunta() {
         return pregunta;
@@ -95,11 +106,24 @@ public class Preguntas {
     public void setVotoAcontra(int votoAcontra) {
         this.votoAcontra = votoAcontra;
     }
+
+    public ListaEtiquetas getListaEtiquetas() {
+        return listaEtiquetas;
+    }
+
+    public void setListaEtiquetas(ListaEtiquetas listaEtiquetas) {
+        this.listaEtiquetas = listaEtiquetas;
+    }
+
+    
+
+    
+
+    
+   
     
 
   
     
     
 }
-
-

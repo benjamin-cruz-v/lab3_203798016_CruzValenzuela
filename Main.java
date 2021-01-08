@@ -1,21 +1,38 @@
 
 package Lab3_20379801_Cruz;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.Scanner;
 
-public static void main(String[] args) {
-        
+
+public class Main {
     
-    ListaEtiquetas listaEtiqueta = new  ListaEtiquetas();
+    public static void main(String[] args) {
+       
+     ListaEtiquetas listaEtiqueta = new  ListaEtiquetas();
     ListaEtiquetas listaEtiquetaP = new  ListaEtiquetas();
     
     
+   
     
-    Stack stack=new Stack();
     
+   Stack stack=new Stack();
+  
    listaEtiqueta.addE("C", "descripcion 1");
    listaEtiqueta.addE("Java", "descripcion 4");
    listaEtiqueta.addE("Lips", "descripcion 3");
+   listaEtiquetaP.addE("P", "descripcion P 1");
+   
+   stack.register("benja", 1);
+   stack.ask("titulo 1","contenido 1",listaEtiquetaP);
+   stack.getListaPregunta().getListaPregunta().get(0).setAutor("benja");
+   stack.ask("titulo 2","contenido 2",listaEtiquetaP);
+   stack.getListaPregunta().getListaPregunta().get(0).setAutor("benja");
+   stack.logout("benja");
+   stack.register("lucas", 2);
+   stack.answer("respuesta 1",1);
+   stack.getListaRespuesta().getListaRespuesta().get(0).setAutor("lucas");
+   stack.logout("lucas");
    
    
     System.out.println("### STACKORVERFLOW  ### ");   
@@ -26,7 +43,9 @@ public static void main(String[] args) {
     while(!salir){
     boolean n=true;
     boolean n2=true;
-        
+       stack.mostrarPregunta();
+       
+        stack.getListaUsuario().mostrarUsuario();
         while(n==true){
             menuInicio();
             int num2 =Entrada2.nextInt();
@@ -35,9 +54,9 @@ public static void main(String[] args) {
                     System.out.println("Ingrese nuevo Usuario");
                     Scanner name=new Scanner(System.in);
                     String nombre=name.nextLine();
-                    System.out.println("Ingrese nueva contraseÃ±a");
-                    Scanner contraseÃ±a=new Scanner(System.in);
-                    int pass =contraseÃ±a.nextInt();
+                    System.out.println("Ingrese nueva contraseña");
+                    Scanner contraseña=new Scanner(System.in);
+                    int pass =contraseña.nextInt();
                     
                     if(stack.register(nombre, pass)==true){
                         n=false;
@@ -51,16 +70,16 @@ public static void main(String[] args) {
                     System.out.println("Ingrese Usuario");
                     Scanner name2=new Scanner(System.in);
                     String nombre2=name2.nextLine();
-                    System.out.println("Ingrese contraseÃ±a");
-                    Scanner contraseÃ±a2=new Scanner(System.in);
-                    int pass2 =contraseÃ±a2.nextInt();
+                    System.out.println("Ingrese contraseña");
+                    Scanner contraseña2=new Scanner(System.in);
+                    int pass2 =contraseña2.nextInt();
                     if(stack.login(nombre2, pass2)==true){
                         System.out.println("#Sesion Iniciada#");
                         n=false;
                         break;
                     }
                     else{
-                        System.out.println("#ContraseÃ±a Incorrecta#");       
+                        System.out.println("#Contraseña Incorrecta#");       
                         break;
                     }
                 case 3:
@@ -93,23 +112,24 @@ public static void main(String[] args) {
                     Scanner entradaContenido=new Scanner(System.in);
                     String contenido=entradaContenido.nextLine();
                     
-                    
+                    ListaEtiquetas listaEtiquetaP2 = new  ListaEtiquetas();
                     boolean e=true;
                     while(e==true){
-                      System.out.println("Opcion 1: AÃ±adir  Etiqueta ");
+                    System.out.println(listaEtiqueta.mostrarEtiqueta());
+                    System.out.println("Opcion 1: Añadir  Etiqueta ");
                     System.out.println("Opcion 2: Crear Etiqueta");
                     System.out.println("Opcion 3: Salir de Etiquetas");
                     Scanner entradaE1=new Scanner(System.in);
                     int opcionE=entradaE1.nextInt();  
                         
                     if(opcionE==1){
-                    System.out.println(listaEtiqueta.mostrarEtiqueta());
+                    
                     System.out.println("Ingrese nummero de la Etiqueta");
                     Scanner entradaEtiqueta2=new Scanner(System.in);
-                    int numEtiqueta=entradaEtiqueta2.nextInt();
+                    int numEtiqueta=entradaEtiqueta2.nextInt()-1;
                     
                     
-                    listaEtiquetaP.addE(listaEtiqueta.getListaEtiqueta().get(numEtiqueta));
+                    listaEtiquetaP2.addE(listaEtiqueta.getListaEtiqueta().get(numEtiqueta));
                     
                     }    
                         
@@ -121,7 +141,7 @@ public static void main(String[] args) {
                     System.out.println("Ingrese Descripcion de la Etiqueta");
                     Scanner entradaEtiqueta2=new Scanner(System.in);
                     String descripcion=entradaEtiqueta2.nextLine(); 
-                    listaEtiquetaP.addE(nombreEtiqueta, descripcion);
+                    listaEtiquetaP2.addE(nombreEtiqueta, descripcion);
                     listaEtiqueta.addE(nombreEtiqueta, descripcion);
                     }
                     if(opcionE==3){
@@ -131,7 +151,7 @@ public static void main(String[] args) {
                     }
                    
           
-                    stack.ask(titulo,contenido,listaEtiquetaP);
+                    stack.ask(titulo,contenido,listaEtiquetaP2);
                     stack.getListaPregunta().getListaPregunta().get(0).setAutor(nombre);
                    
                     stack.mostrarPregunta();
@@ -172,14 +192,16 @@ public static void main(String[] args) {
                     Scanner idRespuestaA=new Scanner(System.in);
                     int IdrA =idRespuestaA.nextInt();
                     stack.accept(IdpA, IdrA);
+                   
                     break;
                 
                 case 5:
+                   
                     System.out.println("Listado de Preguntas\n");
-                    stack.mostrarPregunta();
+                    stack.PreguntasNotUsuario(nombre);
                     System.out.println("Seleccione Si es Pregunta o Respuesta a votar\n");
-                    System.out.println("Pregunta Opcion 1\n");
-                    System.out.println("Respuesta Opcion 2\n");
+                    System.out.println("Pregunta Opcion 1: Pregunta\n");
+                    System.out.println("Respuesta Opcion 2: Respuesta\n");
                     Scanner opcionV=new Scanner(System.in);
                     int opcionv =opcionV.nextInt();
                     
@@ -247,14 +269,3 @@ public static void main(String[] args) {
        System.out.println("Ingrese una opcion: ");
     }
 }
-        
-                
-    
-        
-    
-    
-    
-   
-
-    
-       

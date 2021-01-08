@@ -1,11 +1,13 @@
 
-package Opcion2;
+package Lab3_20379801_Cruz;
+
 
 public class Etiqueta {
-    private String nombre;
+    
+ private String nombre;
     private String descripcion;
     
-    private int id;
+   
     
 
     public Etiqueta(String nombre, String descripcion) {
@@ -19,7 +21,7 @@ public class Etiqueta {
     }
     @Override
      public String toString(){
-        return id+" Nombre:"+nombre+" Descripcion:"+descripcion+"\n";
+        return " Nombre:"+nombre+" Descripcion:"+descripcion+"\n";
         
     }
 
@@ -41,13 +43,7 @@ public class Etiqueta {
         this.descripcion = descripcion;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+   
     
       
 }

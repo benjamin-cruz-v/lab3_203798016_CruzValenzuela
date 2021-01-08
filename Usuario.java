@@ -4,26 +4,15 @@ package Lab3_20379801_Cruz;
 
 public class Usuario {
     public String nombre;
-    public int pass;
-    public boolean sesion;
-    public int reputacion;
-    
-
-
-    public Usuario(String nombre,int pass,boolean sesion,int reputacion){
-
-    this.nombre=nombre;
-    this.pass=pass;
-    this.sesion=sesion;
-    this.reputacion=reputacion;
-
-    }
+    private int pass;
+    private boolean sesion;
+    private int reputacion;
     
    public Usuario(){
        
    }
 
-    public String getNombre() {
+   public String getNombre() {
         return nombre;
     }
 
@@ -55,8 +44,13 @@ public class Usuario {
         this.reputacion = reputacion;
     }
     
-    public String datosU(){
+     
+
+    @Override
+    public String toString() {
         return "Usuario:"+nombre+"         Sesion:"+sesion+"        Reputacion: "+reputacion+"\n";
-        
     }
+    
+    
+    
 }
