@@ -30,8 +30,8 @@ public class Preguntas {
      */
     @Override
     public String toString() {
-         return "Titulo:"+titulo+"\nPregunta:"+pregunta+" Id Pregunta: "+idPregunta+" Autor:"+autor+" Votos a favor:"+votoAfavor+
-                 " Votos en Contra:"+votoAcontra+" Recompensa:"+recompensa+" Estado:"+estado+" fecha:"+fecha+"\n"+"Etiquetas:"+listaEtiquetas.mostrarEtiqueta()+"\n";
+         return "Titulo:"+titulo+"\nPregunta:"+pregunta+", Id Pregunta: "+idPregunta+", Autor:"+autor+", Votos a favor:"+votoAfavor+
+                 ", Votos en Contra:"+votoAcontra+", Recompensa:"+recompensa+", Estado:"+estado+", fecha:"+fecha+"\n"+"Etiquetas:"+listaEtiquetas.mostrarEtiqueta()+"\n";
     }
 /** 
      * Permite obtener la recompensa de la Pregunta .

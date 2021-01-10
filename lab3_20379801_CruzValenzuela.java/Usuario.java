@@ -8,7 +8,7 @@ package Lab3_20379801_Cruz;
  */
 public class Usuario {
     public String nombre;
-    private int pass;
+    private String pass;
     private boolean sesion;
     private int reputacion;
     
@@ -36,14 +36,14 @@ public class Usuario {
      * Permite obtener el pass del usuario.
      * @return nombre.
      */ 
-    public int getPass() {
+    public String getPass() {
         return pass;
     }
 /** 
      * Permite modificar el pass del usuario.
      * @param  pass.
      */
-    public void setPass(int pass) {
+    public void setPass(String pass) {
         this.pass = pass;
     }
 /** 

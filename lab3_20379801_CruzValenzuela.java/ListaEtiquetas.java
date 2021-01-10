@@ -11,15 +11,16 @@ import java.util.ArrayList;
 
 public class ListaEtiquetas {
     
-    ArrayList<Etiqueta> listaEtiqueta=new ArrayList (); // Lista de etiquetas
+   private ArrayList<Etiqueta> listaEtiqueta=new ArrayList (); // Lista de etiquetas
     
     /** 
      * Añade una Etiqueta a lista de Etiquetas.
+     * @param etiqueta
      * @param nombre.
      * @param descripcion.
      */
-    public void addEtiqueta (String nombre, String descripcion) {
-        Etiqueta etiqueta= new Etiqueta();
+    public void addEtiqueta ( Etiqueta etiqueta,String nombre, String descripcion) {
+       
         etiqueta.setNombre(nombre);
         etiqueta.setDescripcion(descripcion);
         listaEtiqueta.add(etiqueta);
@@ -40,7 +41,7 @@ public class ListaEtiquetas {
     public String mostrarEtiqueta(){
         String string ="";
             for(int i=0;i<listaEtiqueta.size();i++){
-                string=string+ listaEtiqueta.get(i).toString();
+                string=string+(i+1)+"."+ listaEtiqueta.get(i).toString();
             }
         return string;
           

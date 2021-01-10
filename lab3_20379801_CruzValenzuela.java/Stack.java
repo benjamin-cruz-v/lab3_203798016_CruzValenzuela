@@ -32,9 +32,10 @@ public class Stack {
      * @param pass, contraseña del Usuario.
      * @return boolean, true en caso que se registre un nuevo Usuario.
      */
-    public boolean register(String nombre,int pass){     
+    public boolean register(String nombre,String pass){     
         if(listaUsuario.getListaUsuario().isEmpty()==true){
-            listaUsuario.addUsuario(nombre, pass);
+            Usuario usuario =new Usuario();
+            listaUsuario.addUsuario(usuario,nombre, pass);
             return true;
         }
         if(listaUsuario.buscarUsuario(nombre)){
@@ -42,7 +43,8 @@ public class Stack {
             return false;
         }
         else{
-            listaUsuario.addUsuario(nombre, pass);
+             Usuario usuario =new Usuario();
+            listaUsuario.addUsuario(usuario,nombre, pass);
             return true;
         }
     }  
@@ -65,9 +67,9 @@ public class Stack {
      * @param pass, contraseña del Usuario.
      * @return boolean, true en caso de logueo de forma correcta.
      */
-    public boolean login(String nombre,int pass){
+    public boolean login(String nombre,String pass){
         for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-           if((listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre))&&(listaUsuario.getListaUsuario().get(i).getPass()==pass)){
+           if((listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre))&&(listaUsuario.getListaUsuario().get(i).getPass().equals(pass))){
                listaUsuario.getListaUsuario().get(i).setSesion(true);
                 return true;
            } 
@@ -83,17 +85,19 @@ public class Stack {
      */
     public void ask(String titulo, String contenido,ListaEtiquetas etiquetas){
         Date fecha = new Date();
-        listaPregunta.addPregunta(titulo, contenido,fecha,etiquetas);
+        Preguntas pregunta =new Preguntas();
+        listaPregunta.addPregunta(pregunta,titulo, contenido,fecha,etiquetas);
       
     }
     
     /** 
      *Permite añadir una respuesta a una pregunta dentro del Stack, dejándola almacenada en la estructura correspondiente.
-     * @param respuesta,Contenido de la respuesta.
+     * @param contenido,Contenido de la respuesta.
      * @param IdPregunta, id de la pregunta que se realizo.
      */
-    public void answer(String respuesta,int IdPregunta){  
-        listaRespuesta.addRespuesta(respuesta, IdPregunta);
+    public void answer(String contenido,int IdPregunta){
+        Respuesta respuesta =new Respuesta();
+        listaRespuesta.addRespuesta(respuesta,contenido, IdPregunta);
     }
      
     /** 
@@ -117,6 +121,7 @@ public class Stack {
                     for(int j=0;j<listaPregunta.getListaPregunta().size();j++){
                         if(listaPregunta.getListaPregunta().get(j).getIdPregunta()==IdPregunta){
                             listaPregunta.getListaPregunta().get(i).setRecompensa(recompensa);
+                            System.out.println("!!Recompensa dada de forma Exitosa!!");
                         }
                     }   
                 }
@@ -171,36 +176,47 @@ public class Stack {
      */ 
     public void vote(ListaPregunta listaPregunta,int Id,String voto){
         String nombre="";
-        if(voto.equals("true")){
-        int reputacion;
-            for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-                if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
-                nombre= listaPregunta.getListaPregunta().get(i).getAutor();
-                listaPregunta.getListaPregunta().get(i).setVotoAfavor(+1);
+        String nombre2=listaUsuario.buscarUsuario();
+        String nombre3=listaPregunta.buscarUsuario(Id);
+        if(!(nombre2.equals(nombre3))){
+            if(voto.equals("true")){
+                int reputacion;
+                for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
+                    if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
+                    nombre= listaPregunta.getListaPregunta().get(i).getAutor();
+                    listaPregunta.getListaPregunta().get(i).setVotoAfavor(+1);
+                    }
                 }
+                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
+                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
+                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+                    }
+                }   
+                System.out.println("!!Su voto se realizo de forma correcta!!");
             }
-            for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                    reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                    listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+        
+            if(voto.equals("false")&&nombre2.equalsIgnoreCase(nombre3)){
+                int reputacion;
+                for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
+                    if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
+                    nombre= listaPregunta.getListaPregunta().get(i).getAutor();
+                    listaPregunta.getListaPregunta().get(i).setVotoAfavor(-1);
+                    }
                 }
+                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
+                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
+                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-10);
+                    }
+                }
+                System.out.println("!!Su voto se realizo de forma correcta!!");
             }
+        
         }
-        if(voto.equals("false")){
-        int reputacion;
-            for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-                if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
-                nombre= listaPregunta.getListaPregunta().get(i).getAutor();
-                listaPregunta.getListaPregunta().get(i).setVotoAfavor(-1);
-                }
-            }
-            for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                    reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                    listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-10);
-                }
-            }
-        }
+        else{
+            System.out.println("#No puede Votar por una Pregunta Propia#"); 
+        } 
         
         
     }
@@ -212,36 +228,45 @@ public class Stack {
      */ 
     public void vote(ListaRespuesta listaRespuesta,int Id,String voto){
         String nombre="";
-        if(voto.equals("true")){
-        int reputacion;
-            for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
-                if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
-                nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
-                listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(+1);
+        String nombre2=listaUsuario.buscarUsuario();
+        String nombre3=listaRespuesta.buscarUsuario(Id);
+        if(!(nombre2.equals(nombre3))){
+            if(voto.equals("true")){
+                int reputacion;
+                for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
+                    if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
+                    nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
+                    listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(+1);
+                    }
                 }
+                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
+                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
+                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+                    }
+                }
+                System.out.println("!!Su voto se realizo de forma correcta!!");
             }
-            for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                    reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                    listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+        
+            if(voto.equals("false")){
+                int reputacion;
+                for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
+                    if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
+                    nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
+                    listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(-1);
+                    }
+                }
+                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
+                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
+                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-2);
+                    }
                 }
             }
         }
-       if(voto.equals("false")){
-        int reputacion;
-            for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
-                if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
-                nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
-                listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(-1);
-                }
-            }
-            for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                    reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                    listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-2);
-                }
-            }
-        }
+        else{
+            System.out.println("#No puede Votar por una Pregunta Propia#"); 
+        } 
     }
     
     /** 

@@ -11,18 +11,19 @@ import java.util.Date;
  */
 public class ListaPregunta {
     
-    ArrayList<Preguntas> listaPregunta=new ArrayList ();   
-    Date fecha = new Date();
+     private ArrayList<Preguntas> listaPregunta=new ArrayList ();   
+     private Date fecha = new Date();
     
     /** 
      * Añade una Preguntas a lista de Preguntas.
+     * @param pregunta
      * @param titulo.
      * @param contenido.
      * @param fecha.
      * @param etiquetas.
      */
-    public void addPregunta(String titulo, String contenido,Date fecha,ListaEtiquetas etiquetas){
-        Preguntas pregunta =new Preguntas();
+    public void addPregunta( Preguntas pregunta,String titulo, String contenido,Date fecha,ListaEtiquetas etiquetas){
+        
         pregunta.setPregunta(contenido);
         pregunta.setEstado("abierta");
         pregunta.setTitulo(titulo);
@@ -49,10 +50,7 @@ public class ListaPregunta {
         }
         return nombre;
     } 
-/** 
-     * Permite obtener la lista de Preguntas.
-     * @return listaPregunta.
-     */
+
     public ArrayList<Preguntas> getListaPregunta() {
         return listaPregunta;
     }

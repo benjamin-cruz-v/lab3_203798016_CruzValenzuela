@@ -12,7 +12,7 @@ public class Etiqueta {
     
     private String nombre; // nombre de la Etiqueta
     private String descripcion; //descricpcion de la Etiqueta.
-    
+  
     /** 
      * Crea una Etiqueta a partir de su nombre y descripcion.
      * @param nombre.
@@ -34,6 +34,7 @@ public class Etiqueta {
      */
     @Override
      public String toString(){
+        
         return " Nombre:"+nombre+" Descripcion:"+descripcion+"\n";
         
     }
@@ -66,8 +67,9 @@ public class Etiqueta {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-   
-    
+/** 
+     * Permite obtener la cantidad de la Etiqueta .
+     * @return nombre.
+     */  
       
 }

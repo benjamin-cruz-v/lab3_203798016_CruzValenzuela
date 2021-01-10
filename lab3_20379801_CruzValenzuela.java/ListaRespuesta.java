@@ -11,16 +11,16 @@ import java.util.Date;
 
 public class ListaRespuesta {
     
-    ArrayList<Respuesta> listaRespuesta=new ArrayList (); 
-    Date fecha = new Date();
+     private ArrayList<Respuesta> listaRespuesta=new ArrayList (); 
+     private Date fecha = new Date();
      
     /** 
      * Añade una respuesta a lista de Respuesta
      * @param idPregunta.
      * @param contenido..
      */
-    public void addRespuesta(String contenido, int idPregunta){
-        Respuesta respuesta =new Respuesta();
+    public void addRespuesta(Respuesta respuesta,String contenido, int idPregunta){
+       
         respuesta.setRespuesta(contenido);
         respuesta.setIdPregunta(idPregunta);
         respuesta.setAutor("");
@@ -54,10 +54,7 @@ public class ListaRespuesta {
     public ArrayList<Respuesta> getListaRespuesta() {
         return listaRespuesta;
     }
-/** 
-     * Permite modificar la lista de Respuesta
-     * @param  listaRespuesta.
-     */
+
     public void setListaRespuesta(ArrayList<Respuesta> listaRespuesta) {
         this.listaRespuesta = listaRespuesta;
     }

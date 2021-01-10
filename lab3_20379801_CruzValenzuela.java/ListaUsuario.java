@@ -11,18 +11,19 @@ import java.util.ArrayList;
 public class ListaUsuario {
     
   
-    ArrayList<Usuario> listaUsuario=new ArrayList ();
+     private ArrayList<Usuario> listaUsuario=new ArrayList ();
     
     /** 
      * Añade una usuario a lista de usuarios.
+     * @param usuario
      * @param nombre.
      * @param pass..
      */
-    public void addUsuario(String nombre,int pass){
-       Usuario usuario =new Usuario();
+    public void addUsuario(Usuario usuario,String nombre,String pass){
+       
        usuario.setNombre(nombre);
        usuario.setPass(pass);
-       usuario.setReputacion(10);
+       usuario.setReputacion(0);
        usuario.setSesion(true);
        listaUsuario.add(0,usuario);
     }

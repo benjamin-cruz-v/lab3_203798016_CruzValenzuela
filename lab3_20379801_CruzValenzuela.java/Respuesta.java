@@ -28,8 +28,8 @@ public class Respuesta {
      */
    @Override
      public String toString(){
-        return "    Respuesta:"+respuesta+ " Id Respuesta: "+idRespuesta+" Autor:"+autor+" Votos a favor:"+votoAfavor+
-                 " Votos en Contra:"+votoAcontra+ " fecha"+fecha+"\n";
+        return "    Respuesta:"+respuesta+ ", Id Respuesta: "+idRespuesta+", Autor:"+autor+", Votos a favor:"+votoAfavor+
+                 ", Votos en Contra:"+votoAcontra+ ", fecha"+fecha+"\n"+"\n";
         
     }
   
