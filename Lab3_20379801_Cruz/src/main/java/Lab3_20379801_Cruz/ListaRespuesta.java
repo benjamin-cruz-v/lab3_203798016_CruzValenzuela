@@ -29,7 +29,7 @@ public class ListaRespuesta {
         respuesta.setFecha(fecha);
         int IdRespuesta=listaRespuesta.size()+1;
         respuesta.setIdRespuesta(IdRespuesta);
-        listaRespuesta.add(0,respuesta);     
+         this.listaRespuesta.add(0,respuesta);     
     }
       
     /** 
@@ -39,9 +39,9 @@ public class ListaRespuesta {
      */ 
     public String buscarUsuario(int IdRespuesta){
         String nombre="";
-        for(int i=0;i<listaRespuesta.size();i++){ 
-            if(listaRespuesta.get(i).getIdPregunta()== IdRespuesta){
-                nombre=listaRespuesta.get(i).getAutor();
+        for(int i=0;i< this.listaRespuesta.size();i++){ 
+            if( this.listaRespuesta.get(i).getIdPregunta()== IdRespuesta){
+                nombre= this.listaRespuesta.get(i).getAutor();
             }
               
         }

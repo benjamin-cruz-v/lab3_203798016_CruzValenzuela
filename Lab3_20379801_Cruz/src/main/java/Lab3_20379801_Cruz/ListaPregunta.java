@@ -32,7 +32,7 @@ public class ListaPregunta {
         int IdPregunta=listaPregunta.size()+1;
         pregunta.setIdPregunta(IdPregunta);
         pregunta.setListaEtiquetas(etiquetas);
-        listaPregunta.add(0,pregunta);   
+        this.listaPregunta.add(0,pregunta);   
     }
      
     /** 
@@ -42,9 +42,9 @@ public class ListaPregunta {
      */ 
     public String buscarUsuario(int IdPregunta){
         String nombre="";
-        for(int i=0;i<listaPregunta.size();i++){ 
-            if(listaPregunta.get(i).getIdPregunta()==IdPregunta){
-                nombre=listaPregunta.get(i).getAutor();
+        for(int i=0;i< this.listaPregunta.size();i++){ 
+            if( this.listaPregunta.get(i).getIdPregunta()==IdPregunta){
+                nombre= this.listaPregunta.get(i).getAutor();
             }
             
         }

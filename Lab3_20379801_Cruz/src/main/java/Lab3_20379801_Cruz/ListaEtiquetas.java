@@ -23,14 +23,14 @@ public class ListaEtiquetas {
        
         etiqueta.setNombre(nombre);
         etiqueta.setDescripcion(descripcion);
-        listaEtiqueta.add(etiqueta);
+        this.listaEtiqueta.add(etiqueta);
     }
     /** 
      * Añade una Etiqueta a lista de Etiquetas.
      * @param etiqueta.
      */
     public void addEtiqueta (Etiqueta etiqueta){
-      listaEtiqueta.add(etiqueta);
+       this.listaEtiqueta.add(etiqueta);
        
     }
    
@@ -40,8 +40,8 @@ public class ListaEtiquetas {
      */ 
     public String mostrarEtiqueta(){
         String string ="";
-            for(int i=0;i<listaEtiqueta.size();i++){
-                string=string+(i+1)+"."+ listaEtiqueta.get(i).toString();
+            for(int i=0;i< this.listaEtiqueta.size();i++){
+                string=string+(i+1)+"."+  this.listaEtiqueta.get(i).toString();
             }
         return string;
           

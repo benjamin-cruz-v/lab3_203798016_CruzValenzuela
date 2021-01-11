@@ -25,7 +25,7 @@ public class ListaUsuario {
        usuario.setPass(pass);
        usuario.setReputacion(0);
        usuario.setSesion(true);
-       listaUsuario.add(0,usuario);
+       this.listaUsuario.add(0,usuario);
     }
     /** 
      * Permite buscar a un Usuario con sesion activa.
@@ -33,9 +33,9 @@ public class ListaUsuario {
      */ 
     public String buscarUsuario(){
         String string ="";
-            for(int i=0;i<listaUsuario.size();i++){ 
-                if(listaUsuario.get(i).isSesion()==true)
-                    string=string+ listaUsuario.get(i).getNombre();
+            for(int i=0;i< this.listaUsuario.size();i++){ 
+                if( this.listaUsuario.get(i).isSesion()==true)
+                    string=string+  this.listaUsuario.get(i).getNombre();
                 }
         return string;
     }
@@ -45,8 +45,8 @@ public class ListaUsuario {
      * @return boolean.
      */ 
     public boolean buscarUsuario(String nombre){
-        for(int i=0;i<listaUsuario.size();i++){ 
-            if(listaUsuario.get(i).getNombre().equals(nombre)){
+        for(int i=0;i< this.listaUsuario.size();i++){ 
+            if( this.listaUsuario.get(i).getNombre().equals(nombre)){
                 return true;
             }
                 
@@ -60,9 +60,9 @@ public class ListaUsuario {
      */
     public void mostrarUsuario(String nombre){
         String string ="";
-        for(int i=0;i<listaUsuario.size();i++){
-            if(listaUsuario.get(i).getNombre().equals(nombre)){
-                string=string+ listaUsuario.get(i).toString(); 
+        for(int i=0;i< this.listaUsuario.size();i++){
+            if( this.listaUsuario.get(i).getNombre().equals(nombre)){
+                string=string+  this.listaUsuario.get(i).toString(); 
             }
            
         }
@@ -73,8 +73,8 @@ public class ListaUsuario {
      */
     public void mostrarUsuario(){
         String string ="";
-        for(int i=0;i<listaUsuario.size();i++){
-            string=string+ listaUsuario.get(i).toString();
+        for(int i=0;i< this.listaUsuario.size();i++){
+            string=string+  this.listaUsuario.get(i).toString();
         }
         System.out.println(string); 
           

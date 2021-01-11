@@ -33,9 +33,9 @@ public class Stack {
      * @return boolean, true en caso que se registre un nuevo Usuario.
      */
     public boolean register(String nombre,String pass){     
-        if(listaUsuario.getListaUsuario().isEmpty()==true){
+        if(this.listaUsuario.getListaUsuario().isEmpty()==true){
             Usuario usuario =new Usuario();
-            listaUsuario.addUsuario(usuario,nombre, pass);
+             this.listaUsuario.addUsuario(usuario,nombre, pass);
             return true;
         }
         if(listaUsuario.buscarUsuario(nombre)){
@@ -44,7 +44,7 @@ public class Stack {
         }
         else{
              Usuario usuario =new Usuario();
-            listaUsuario.addUsuario(usuario,nombre, pass);
+             this.listaUsuario.addUsuario(usuario,nombre, pass);
             return true;
         }
     }  
@@ -54,9 +54,9 @@ public class Stack {
      * @param nombre, indica el nombre de Usuario.
      */
     public void logout(String nombre){
-        for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-            if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                listaUsuario.getListaUsuario().get(i).setSesion(false);
+        for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+            if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                 this.listaUsuario.getListaUsuario().get(i).setSesion(false);
             } 
         }
     }
@@ -69,8 +69,8 @@ public class Stack {
      */
     public boolean login(String nombre,String pass){
         for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-           if((listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre))&&(listaUsuario.getListaUsuario().get(i).getPass().equals(pass))){
-               listaUsuario.getListaUsuario().get(i).setSesion(true);
+           if(( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre))&&( this.listaUsuario.getListaUsuario().get(i).getPass().equals(pass))){
+                this.listaUsuario.getListaUsuario().get(i).setSesion(true);
                 return true;
            } 
         }
@@ -86,7 +86,7 @@ public class Stack {
     public void ask(String titulo, String contenido,ListaEtiquetas etiquetas){
         Date fecha = new Date();
         Preguntas pregunta =new Preguntas();
-        listaPregunta.addPregunta(pregunta,titulo, contenido,fecha,etiquetas);
+         this.listaPregunta.addPregunta(pregunta,titulo, contenido,fecha,etiquetas);
       
     }
     
@@ -97,7 +97,7 @@ public class Stack {
      */
     public void answer(String contenido,int IdPregunta){
         Respuesta respuesta =new Respuesta();
-        listaRespuesta.addRespuesta(respuesta,contenido, IdPregunta);
+         this.listaRespuesta.addRespuesta(respuesta,contenido, IdPregunta);
     }
      
     /** 
@@ -108,19 +108,19 @@ public class Stack {
     public void reward(int IdPregunta,int recompensa){
        int reputacion=0;
        String nombre="";
-        for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-            if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==IdPregunta){
-               nombre= listaPregunta.getListaPregunta().get(i).getAutor();
+        for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
+            if( this.listaPregunta.getListaPregunta().get(i).getIdPregunta()==IdPregunta){
+               nombre=  this.listaPregunta.getListaPregunta().get(i).getAutor();
             }
         }  
-        for(int i=0;i<listaUsuario.getListaUsuario().size();i++){
-            if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                if(listaUsuario.getListaUsuario().get(i).getReputacion()>recompensa){
-                    reputacion=listaUsuario.getListaUsuario().get(i).getReputacion()-recompensa;
-                    listaUsuario.getListaUsuario().get(i).setReputacion(reputacion);
-                    for(int j=0;j<listaPregunta.getListaPregunta().size();j++){
-                        if(listaPregunta.getListaPregunta().get(j).getIdPregunta()==IdPregunta){
-                            listaPregunta.getListaPregunta().get(i).setRecompensa(recompensa);
+        for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){
+            if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                if( this.listaUsuario.getListaUsuario().get(i).getReputacion()>recompensa){
+                    reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion()-recompensa;
+                     this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion);
+                    for(int j=0;j< this.listaPregunta.getListaPregunta().size();j++){
+                        if( this.listaPregunta.getListaPregunta().get(j).getIdPregunta()==IdPregunta){
+                             this.listaPregunta.getListaPregunta().get(i).setRecompensa(recompensa);
                             System.out.println("!!Recompensa dada de forma Exitosa!!");
                         }
                     }   
@@ -138,31 +138,31 @@ public class Stack {
      * @param IdRespuesta, id de la respuesta que se realizo.
      */
     public void accept(int IdPregunta,int IdRespuesta){
-       String nombre1=listaPregunta.buscarUsuario(IdPregunta);
-        String nombre2=listaRespuesta.buscarUsuario(IdRespuesta);
+       String nombre1= this.listaPregunta.buscarUsuario(IdPregunta);
+        String nombre2= this.listaRespuesta.buscarUsuario(IdRespuesta);
         int num=0;
         int reputacion;
         int recompensa=0;
-        for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
+        for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
             if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==IdPregunta){
                 num=i;
-                recompensa=listaPregunta.getListaPregunta().get(i).getRecompensa();
-                listaPregunta.getListaPregunta().get(i).setRecompensa(0);
-                listaPregunta.getListaPregunta().get(i).setEstado("cerrada");
+                recompensa= this.listaPregunta.getListaPregunta().get(i).getRecompensa();
+                 this.listaPregunta.getListaPregunta().get(i).setRecompensa(0);
+                 this.listaPregunta.getListaPregunta().get(i).setEstado("cerrada");
             }
         }
-        for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-            if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre1)){
-                reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+2);
+        for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+            if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre1)){
+                reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
+                 this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+2);
             }
         }
-        for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-            if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre2)){
-                reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
+        for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+            if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre2)){
+                reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
                 reputacion=reputacion+15+recompensa;
                
-                listaUsuario.getListaUsuario().get(i).setReputacion(reputacion);
+                 this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion);
          
             }
         }
@@ -176,21 +176,21 @@ public class Stack {
      */ 
     public void vote(ListaPregunta listaPregunta,int Id,String voto){
         String nombre="";
-        String nombre2=listaUsuario.buscarUsuario();
-        String nombre3=listaPregunta.buscarUsuario(Id);
+        String nombre2= this.listaUsuario.buscarUsuario();
+        String nombre3= this.listaPregunta.buscarUsuario(Id);
         if(!(nombre2.equals(nombre3))){
             if(voto.equals("true")){
                 int reputacion;
-                for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-                    if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
-                    nombre= listaPregunta.getListaPregunta().get(i).getAutor();
-                    listaPregunta.getListaPregunta().get(i).setVotoAfavor(+1);
+                for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
+                    if( this.listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
+                    nombre=  this.listaPregunta.getListaPregunta().get(i).getAutor();
+                     this.listaPregunta.getListaPregunta().get(i).setVotoAfavor(+1);
                     }
                 }
-                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+                for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+                    if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
+                         this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
                     }
                 }   
                 System.out.println("!!Su voto se realizo de forma correcta!!");
@@ -198,16 +198,16 @@ public class Stack {
         
             if(voto.equals("false")&&nombre2.equalsIgnoreCase(nombre3)){
                 int reputacion;
-                for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
+                for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
                     if(listaPregunta.getListaPregunta().get(i).getIdPregunta()==Id){
-                    nombre= listaPregunta.getListaPregunta().get(i).getAutor();
-                    listaPregunta.getListaPregunta().get(i).setVotoAfavor(-1);
+                    nombre=  this.listaPregunta.getListaPregunta().get(i).getAutor();
+                     this.listaPregunta.getListaPregunta().get(i).setVotoAfavor(-1);
                     }
                 }
-                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-10);
+                for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+                    if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
+                         this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-10);
                     }
                 }
                 System.out.println("!!Su voto se realizo de forma correcta!!");
@@ -228,21 +228,21 @@ public class Stack {
      */ 
     public void vote(ListaRespuesta listaRespuesta,int Id,String voto){
         String nombre="";
-        String nombre2=listaUsuario.buscarUsuario();
-        String nombre3=listaRespuesta.buscarUsuario(Id);
+        String nombre2= this.listaUsuario.buscarUsuario();
+        String nombre3= this.listaRespuesta.buscarUsuario(Id);
         if(!(nombre2.equals(nombre3))){
             if(voto.equals("true")){
                 int reputacion;
-                for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
-                    if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
-                    nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
-                    listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(+1);
+                for(int i=0;i< this.listaRespuesta.getListaRespuesta().size();i++){
+                    if( this.listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
+                    nombre=  this.listaRespuesta.getListaRespuesta().get(i).getAutor();
+                     this.listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(+1);
                     }
                 }
-                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
+                for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+                    if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
+                         this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion+10);
                     }
                 }
                 System.out.println("!!Su voto se realizo de forma correcta!!");
@@ -250,16 +250,16 @@ public class Stack {
         
             if(voto.equals("false")){
                 int reputacion;
-                for(int i=0;i<listaRespuesta.getListaRespuesta().size();i++){
-                    if(listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
-                    nombre= listaRespuesta.getListaRespuesta().get(i).getAutor();
-                    listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(-1);
+                for(int i=0;i< this.listaRespuesta.getListaRespuesta().size();i++){
+                    if( this.listaRespuesta.getListaRespuesta().get(i).getIdPregunta()==Id){
+                    nombre=  this.listaRespuesta.getListaRespuesta().get(i).getAutor();
+                     this.listaRespuesta.getListaRespuesta().get(i).setVotoAfavor(-1);
                     }
                 }
-                for(int i=0;i<listaUsuario.getListaUsuario().size();i++){ 
-                    if(listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
-                        reputacion=listaUsuario.getListaUsuario().get(i).getReputacion();
-                        listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-2);
+                for(int i=0;i< this.listaUsuario.getListaUsuario().size();i++){ 
+                    if( this.listaUsuario.getListaUsuario().get(i).getNombre().equals(nombre)){
+                        reputacion= this.listaUsuario.getListaUsuario().get(i).getReputacion();
+                         this.listaUsuario.getListaUsuario().get(i).setReputacion(reputacion-2);
                     }
                 }
             }
@@ -274,15 +274,15 @@ public class Stack {
      */ 
     public void mostrarPregunta(){
         String string ="";
-        for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-            if(listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta")){
-                int x=listaPregunta.getListaPregunta().get(i).getIdPregunta();
-                string=string+ listaPregunta.getListaPregunta().get(i).toString();
+        for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
+            if( this.listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta")){
+                int x= this.listaPregunta.getListaPregunta().get(i).getIdPregunta();
+                string=string+  this.listaPregunta.getListaPregunta().get(i).toString();
           
-                for(int j=0;j<listaRespuesta.getListaRespuesta().size();j++){
-                    if(listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
+                for(int j=0;j< this.listaRespuesta.getListaRespuesta().size();j++){
+                    if( this.listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
               
-                        string=string+listaRespuesta.getListaRespuesta().get(j).toString();
+                        string=string+ this.listaRespuesta.getListaRespuesta().get(j).toString();
                     }
              
                 }
@@ -298,14 +298,14 @@ public class Stack {
      */ 
     public void mostrarPregunta(String nombre){
         String string ="";
-            for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-                if((listaPregunta.getListaPregunta().get(i).getAutor().equals(nombre))&&(listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta"))){
-                    int x=listaPregunta.getListaPregunta().get(i).getIdPregunta();
-                    string=string+ listaPregunta.getListaPregunta().get(i).toString();
+            for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
+                if(( this.listaPregunta.getListaPregunta().get(i).getAutor().equals(nombre))&&( this.listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta"))){
+                    int x= this.listaPregunta.getListaPregunta().get(i).getIdPregunta();
+                    string=string+  this.listaPregunta.getListaPregunta().get(i).toString();
           
-                    for(int j=0;j<listaRespuesta.getListaRespuesta().size();j++){
-                        if(listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
-                            string=string+listaRespuesta.getListaRespuesta().get(j).toString();
+                    for(int j=0;j< this.listaRespuesta.getListaRespuesta().size();j++){
+                        if( this.listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
+                            string=string+ this.listaRespuesta.getListaRespuesta().get(j).toString();
                         
                         }
                     }
@@ -321,14 +321,14 @@ public class Stack {
      */ 
     public void PreguntasNotUsuario(String nombre){
         String string ="";
-            for(int i=0;i<listaPregunta.getListaPregunta().size();i++){
-                if(!((listaPregunta.getListaPregunta().get(i).getAutor().equals(nombre)))&&(listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta"))){
-                    int x=listaPregunta.getListaPregunta().get(i).getIdPregunta();
-                    string=string+ listaPregunta.getListaPregunta().get(i).toString();
+            for(int i=0;i< this.listaPregunta.getListaPregunta().size();i++){
+                if(!(( this.listaPregunta.getListaPregunta().get(i).getAutor().equals(nombre)))&&( this.listaPregunta.getListaPregunta().get(i).getEstado().equalsIgnoreCase("abierta"))){
+                    int x= this.listaPregunta.getListaPregunta().get(i).getIdPregunta();
+                    string=string+  this.listaPregunta.getListaPregunta().get(i).toString();
           
-                    for(int j=0;j<listaRespuesta.getListaRespuesta().size();j++){
-                        if(listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
-                            string=string+listaRespuesta.getListaRespuesta().get(j).toString();
+                    for(int j=0;j< this.listaRespuesta.getListaRespuesta().size();j++){
+                        if( this.listaRespuesta.getListaRespuesta().get(j).getIdPregunta()==x){
+                            string=string+ this.listaRespuesta.getListaRespuesta().get(j).toString();
                         
                         }
                     }
